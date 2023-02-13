@@ -57,7 +57,11 @@ class ChatStore:
 
     # delete users
     def delete_user(self, name: str):
-        del self._users[name]
+        if name in self._users:
+            del self._users[name]
+            print("Deleted user {}".format(name))
+        else:
+            print("User {} not found".format(name))
 
     # list users
     def list_users(self, pattern: str = '*'):
