@@ -10,14 +10,16 @@ class Command(_message.Message):
     command: str
     def __init__(self, command: _Optional[str] = ...) -> None: ...
 
-class Dummy(_message.Message):
-    __slots__ = ["dummy"]
-    DUMMY_FIELD_NUMBER: _ClassVar[int]
-    dummy: str
-    def __init__(self, dummy: _Optional[str] = ...) -> None: ...
-
 class Response(_message.Message):
-    __slots__ = ["message"]
+    __slots__ = ["message", "name"]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
     message: str
-    def __init__(self, message: _Optional[str] = ...) -> None: ...
+    name: str
+    def __init__(self, message: _Optional[str] = ..., name: _Optional[str] = ...) -> None: ...
+
+class User(_message.Message):
+    __slots__ = ["name"]
+    NAME_FIELD_NUMBER: _ClassVar[int]
+    name: str
+    def __init__(self, name: _Optional[str] = ...) -> None: ...

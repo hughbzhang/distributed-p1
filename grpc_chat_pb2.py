@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fgrpc_chat.proto\x12\nhelloworld\"\x16\n\x05\x44ummy\x12\r\n\x05\x64ummy\x18\x01 \x01(\t\"\x1a\n\x07\x43ommand\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\t\"\x1b\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t2w\n\x04\x43hat\x12:\n\x0btry_command\x12\x13.helloworld.Command\x1a\x14.helloworld.Response\"\x00\x12\x33\n\x06listen\x12\x11.helloworld.Dummy\x1a\x14.helloworld.Response\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0fgrpc_chat.proto\x12\nhelloworld\"\x14\n\x04User\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1a\n\x07\x43ommand\x12\x0f\n\x07\x63ommand\x18\x01 \x01(\t\")\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0c\n\x04name\x18\x02 \x01(\t2v\n\x04\x43hat\x12:\n\x0btry_command\x12\x13.helloworld.Command\x1a\x14.helloworld.Response\"\x00\x12\x32\n\x06listen\x12\x10.helloworld.User\x1a\x14.helloworld.Response\"\x00\x42\x36\n\x1bio.grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'grpc_chat_pb2', globals())
@@ -21,12 +21,12 @@ if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
   DESCRIPTOR._serialized_options = b'\n\033io.grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW'
-  _DUMMY._serialized_start=31
-  _DUMMY._serialized_end=53
-  _COMMAND._serialized_start=55
-  _COMMAND._serialized_end=81
-  _RESPONSE._serialized_start=83
-  _RESPONSE._serialized_end=110
-  _CHAT._serialized_start=112
-  _CHAT._serialized_end=231
+  _USER._serialized_start=31
+  _USER._serialized_end=51
+  _COMMAND._serialized_start=53
+  _COMMAND._serialized_end=79
+  _RESPONSE._serialized_start=81
+  _RESPONSE._serialized_end=122
+  _CHAT._serialized_start=124
+  _CHAT._serialized_end=242
 # @@protoc_insertion_point(module_scope)
