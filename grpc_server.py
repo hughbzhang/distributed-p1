@@ -5,7 +5,7 @@ import random
 import grpc
 import grpc_chat_pb2
 import grpc_chat_pb2_grpc
-from IPython import embed
+#from IPython import embed
 
 # Server application
 

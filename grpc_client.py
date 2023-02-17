@@ -6,7 +6,7 @@ import grpc
 import grpc_chat_pb2
 import grpc_chat_pb2_grpc
 import sys, select
-from IPython import embed
+#from IPython import embed
 
 def run():
     print("Will try to start")
@@ -18,7 +18,7 @@ def run():
 
         while True:
 
-            print("My name is {}".format(name))
+            #print("My name is {}".format(name))
 
             # Listen for unread messages
             new_message = client_stub.listen(grpc_chat_pb2.User(name=name))
@@ -26,7 +26,8 @@ def run():
                 print(new_message.message)
 
             # Read input from terminal
-            input_exists, _, _ = select.select( [sys.stdin], [], [], 5)
+            #input_exists, _, _ = select.select( [sys.stdin], [], [], 5)
+            input_exists, _, _ = select.select( [sys.stdin], [], [])
 
             if (input_exists):
                 command = sys.stdin.readline().strip()
