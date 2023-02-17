@@ -20,6 +20,7 @@ def run():
 
             print("My name is {}".format(name))
 
+            # Listen for unread messages
             new_message = client_stub.listen(grpc_chat_pb2.User(name=name))
             if new_message.message != "":
                 print(new_message.message)

@@ -10,7 +10,7 @@ from IPython import embed
 # Server application
 
 import asyncio
-import socket 
+import socket
 import re
 import action
 from typing import Union
@@ -27,7 +27,7 @@ class ChatStore:
     def create_user(self, name: str):
         if name in self._users:
             return action.NOTOK
-        else:    
+        else:
             self._users[name] = name
             return action.OK
 
@@ -48,7 +48,7 @@ class ChatStore:
             return True
         else:
             return False
-    
+
     # Log off
     def disconnect(self, name: str):
         if name in self._users:
@@ -68,6 +68,7 @@ store = ChatStore()
 
 def execute_command(command: grpc_chat_pb2.Command):
 
+    # Parse command, args, data
     try:
         action_name, data = command.command.split()[0], command.command.split()[1:]
     except Exception as ex:
@@ -96,13 +97,13 @@ def execute_command(command: grpc_chat_pb2.Command):
             status = store.delete_user(user)
             if user == name:
                 name = ''
-                
+
         # List users
         elif(action_name == 'list'):
             pattern = data[0] if len(data) >= 1 else None
             users = store.list_users(pattern)
             status = action.OK
-                
+
         # Send a message to a specific user
         elif(action_name == 'send'):
             [user, text] = data
@@ -110,9 +111,9 @@ def execute_command(command: grpc_chat_pb2.Command):
     except Exception as ex:
         print (ex)
         status = action.NOTOK
-    
+
     return status, extra_data
-    
+
 class Chat(grpc_chat_pb2_grpc.ChatServicer):
 
     def listen(self, request, context):
@@ -126,7 +127,7 @@ class Chat(grpc_chat_pb2_grpc.ChatServicer):
         return grpc_chat_pb2.Response(message=message)
 
     def try_command(self, request, context):
-        
+
         status, extra_data = execute_command(request)
 
         if extra_data["command"] == "connect":
@@ -146,4 +147,3 @@ def serve():
 if __name__ == '__main__':
     logging.basicConfig()
     serve()
-
