@@ -1,4 +1,5 @@
 from concurrent import futures
+from IPython import embed
 import logging
 import random
 
@@ -41,7 +42,7 @@ class ChatStore:
 
     # list users
     def list_users(self, pattern: str = '*'):
-        return list(filter(lambda user_name: re.search(pattern, user_name), self._users.keys()))
+        return list(self._users.keys())
 
     def connect(self, name: str):
         if name in self._users:
@@ -95,13 +96,10 @@ def execute_command(command: grpc_chat_pb2.Command):
         elif(action_name == 'delete'):
             user = data[0]
             status = store.delete_user(user)
-            if user == name:
-                name = ''
 
         # List users
         elif(action_name == 'list'):
-            pattern = data[0] if len(data) >= 1 else None
-            users = store.list_users(pattern)
+            extra_data["list"] = store.list_users()
             status = action.OK
 
         # Send a message to a specific user
@@ -132,6 +130,9 @@ class Chat(grpc_chat_pb2_grpc.ChatServicer):
 
         if extra_data["command"] == "connect":
             return grpc_chat_pb2.Response(message="Connection successful for user {}".format(extra_data["user"]), name=extra_data["user"])
+        elif extra_data["command"] == "list":
+            print(extra_data)
+            return grpc_chat_pb2.Response(message=str(extra_data["list"]))
         else:
             return grpc_chat_pb2.Response(message="Got command ||{}||".format(request.command))
 
